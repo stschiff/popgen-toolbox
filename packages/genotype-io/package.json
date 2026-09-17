@@ -5,6 +5,15 @@
   "description": "Tools for working with population genetics file formats in JavaScript/TypeScript",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stschiff/popgen-toolbox.git",
+    "directory": "packages/genotype-io"
+  },
+  "bugs": {
+    "url": "https://github.com/stschiff/popgen-toolbox/issues"
+  },
+  "homepage": "https://github.com/stschiff/popgen-toolbox/tree/main/packages/genotype-io#readme",
   "sideEffects": false,
   "files": [
     "dist"
