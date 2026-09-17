@@ -1,7 +1,9 @@
 {
   "name": "@popgen-toolbox/genotype-io",
   "version": "1.0.0",
-  "publishConfig": {"access": "public"},
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Tools for working with population genetics file formats in JavaScript/TypeScript",
   "type": "module",
   "license": "MIT",
@@ -30,9 +32,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "prepack": "npm run build"
   },
-  "prepublishOnly": "npm run build",
   "devDependencies": {
     "typescript": "^7.0.2"
   }
