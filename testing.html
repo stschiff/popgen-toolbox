@@ -1,0 +1,53 @@
+<!doctype html>
+<notebook theme="cotton">
+  <title>Testing popgen-js</title>
+  <script id="1" type="text/markdown">
+    # Testing popgen-js
+  </script>
+  <script id="2" type="text/x-typescript" pinned="">
+    import {readFamFile, streamBimFile, streamBedFile, readPlink} from './dist/plink.js'
+  </script>
+  <script id="3" type="text/x-typescript" pinned="">
+    const famFetch = await fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.fam");
+    const famText = await famFetch.text();
+    const fam = readFamFile(famText);
+  </script>
+  <script id="5" type="text/x-typescript" pinned="">
+    const bimFetch = await fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.bim");
+    const bimStream = streamBimFile(bimFetch.body);
+  </script>
+  <script id="12" type="text/x-typescript" pinned="">
+    const r = bimStream.getReader();
+    for(let i = 0; i < 10; i++) {
+      const {done, value} = await r.read();
+      if(done)
+        break;
+      display(value);
+    }
+  </script>
+  <script id="13" type="text/x-typescript" pinned="">
+    const bedFetch = await fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.bed");
+    const bedStream = streamBedFile(bedFetch.body, fam.length);
+    const bedReader = bedStream.getReader();
+    for(let i = 0; i < 10; i++) {
+      const {done, value} = await bedReader.read();
+      display(value);
+      if(done) break;
+    }
+  </script>
+  <script id="16" type="text/x-typescript" pinned="">
+    const {indEntries, genotypeStream} = await Promise.all([
+      fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.fam"),
+      fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.bim"),
+      fetch("https://assets.stephanschiffels.de/testData/2024_Gretzinger_EarlyCelts.bed"),
+    ]).then(([fam, bim, bed]) => readPlink({ famStream: fam.body, bimStream: bim.body, bedStream: bed.body }));
+
+    display(indEntries);
+    const gr = genotypeStream.getReader();
+    for (let i = 0; i < 10; i++) {
+      const {done, value} = await gr.read();
+      display(value);
+      if (done) break;
+    }
+  </script>
+</notebook>

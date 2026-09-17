@@ -1,0 +1,28 @@
+{
+  "name": "popgen-js",
+  "version": "0.1.0",
+  "description": "Tools for working with population genetics file formats in JavaScript/TypeScript",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./plink": {
+      "types": "./dist/plink.d.ts",
+      "default": "./dist/plink.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
