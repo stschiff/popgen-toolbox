@@ -33,7 +33,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "prepack": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "typescript": "^7.0.2"
