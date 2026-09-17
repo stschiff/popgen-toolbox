@@ -1,0 +1,30 @@
+{
+  "name": "@popgen-toolbox/genotype-io",
+  "version": "1.0.0",
+  "publishConfig": {"access": "public"},
+  "description": "Tools for working with population genetics file formats in JavaScript/TypeScript",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./plink": {
+      "types": "./dist/plink.d.ts",
+      "default": "./dist/plink.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "prepublishOnly": "npm run build",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
